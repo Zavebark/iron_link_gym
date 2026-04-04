@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-padding: 15px;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iron_link_gym.controller.MemberController">
+
+    <!-- Search Bar -->
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by name or phone..." prefWidth="300"/>
+        <Button text="Search" onAction="#handleSearch"/>
+        <Button text="Show All" onAction="#handleShowAll"/>
+        <Button text="Add Member" onAction="#handleAdd"/>
+        <Button text="Edit Member" onAction="#handleEdit"/>
+        <Button text="Delete Member" onAction="#handleDelete"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="memberTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"      text="ID"       prefWidth="50"/>
+            <TableColumn fx:id="colName"    text="Name"     prefWidth="180"/>
+            <TableColumn fx:id="colPhone"   text="Phone"    prefWidth="120"/>
+            <TableColumn fx:id="colEmail"   text="Email"    prefWidth="180"/>
+            <TableColumn fx:id="colJoined"  text="Joined"   prefWidth="100"/>
+            <TableColumn fx:id="colNotes"   text="Medical Notes" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+    <!-- Status Label -->
+    <Label fx:id="statusLabel" text=""/>
+
+</VBox>

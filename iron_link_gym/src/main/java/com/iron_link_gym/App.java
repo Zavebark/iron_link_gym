@@ -1,16 +1,22 @@
 package com.iron_link_gym;
 
-import com.iron_link_gym.db.DBConnection;
-import java.sql.Connection;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class App {
+public class App extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/iron_link_gym/main.fxml"));
+        Scene scene = new Scene(loader.load(), 1000, 650);
+        stage.setTitle("Iron-Link Gym Management System");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-        try {
-            Connection conn = DBConnection.getConnection();
-            System.out.println("Connected to Oracle DB!");
-            DBConnection.closeConnection();
-        } catch (Exception e) {
-            System.out.println("Connection failed: " + e.getMessage());
-        }
+        launch(args);
     }
 }

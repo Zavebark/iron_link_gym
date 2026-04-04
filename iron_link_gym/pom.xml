@@ -45,7 +45,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.ironlink.App</mainClass>
+                            <mainClass>com.iron_link_gym/com.iron_link_gym.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
