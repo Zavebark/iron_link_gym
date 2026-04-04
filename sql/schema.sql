@@ -41,3 +41,67 @@ CREATE INDEX idx_memberships_status   ON MEMBERSHIPS(status);
 CREATE INDEX idx_memberships_end_date ON MEMBERSHIPS(end_date);
 CREATE INDEX idx_attendance_member    ON ATTENDANCE(member_id);
 CREATE INDEX idx_attendance_time      ON ATTENDANCE(checkin_time);
+
+INSERT INTO PLANS (plan_name, plan_type, duration_days, price, is_active)
+VALUES ('Monthly Basic', 'Monthly', 30, 799, 'Y');
+
+INSERT INTO PLANS (plan_name, plan_type, duration_days, price, is_active)
+VALUES ('Monthly Pro', 'Monthly', 30, 1199, 'Y');
+
+INSERT INTO PLANS (plan_name, plan_type, duration_days, price, is_active)
+VALUES ('Quarterly Basic', 'Quarterly', 90, 2099, 'Y');
+
+INSERT INTO PLANS (plan_name, plan_type, duration_days, price, is_active)
+VALUES ('Annual Pro', 'Annual', 365, 9999, 'Y');
+
+COMMIT;
+
+INSERT INTO MEMBERS (full_name, phone, email, date_joining)
+VALUES ('Arjun Sharma', '9876543210', 'arjun@email.com', DATE '2024-01-15');
+
+INSERT INTO MEMBERS (full_name, phone, email, date_joining)
+VALUES ('Priya Nair', '9845012345', 'priya@email.com', DATE '2024-02-01');
+
+INSERT INTO MEMBERS (full_name, phone, email, date_joining, medical_notes)
+VALUES ('Rahul Verma', '9900112233', 'rahul@email.com', DATE '2024-03-10', 'Mild knee pain');
+
+INSERT INTO MEMBERS (full_name, phone, email, date_joining)
+VALUES ('Sneha Iyer', '9988776655', 'sneha@email.com', DATE '2024-04-05');
+
+INSERT INTO MEMBERS (full_name, phone, email, date_joining, medical_notes)
+VALUES ('Kiran Reddy', '9871234560', 'kiran@email.com', DATE '2024-06-20', 'Diabetic');
+
+COMMIT;
+
+INSERT INTO MEMBERSHIPS (member_id, plan_id, start_date, end_date, status)
+VALUES (1, 4, DATE '2025-01-01', DATE '2026-01-01', 'Active');
+
+INSERT INTO MEMBERSHIPS (member_id, plan_id, start_date, end_date, status)
+VALUES (2, 3, DATE '2025-02-01', DATE '2025-05-02', 'Expired');
+
+INSERT INTO MEMBERSHIPS (member_id, plan_id, start_date, end_date, status)
+VALUES (3, 1, DATE '2025-03-01', DATE '2025-03-31', 'Expired');
+
+INSERT INTO MEMBERSHIPS (member_id, plan_id, start_date, end_date, status)
+VALUES (4, 4, DATE '2025-01-15', DATE '2026-01-15', 'Active');
+
+INSERT INTO MEMBERSHIPS (member_id, plan_id, start_date, end_date, status)
+VALUES (5, 2, DATE '2025-03-10', DATE '2026-03-10', 'Active');
+
+COMMIT;
+
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (1, SYSTIMESTAMP - INTERVAL '1' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (1, SYSTIMESTAMP - INTERVAL '3' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (2, SYSTIMESTAMP - INTERVAL '1' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (3, SYSTIMESTAMP - INTERVAL '2' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (4, SYSTIMESTAMP - INTERVAL '1' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (4, SYSTIMESTAMP - INTERVAL '6' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (5, SYSTIMESTAMP - INTERVAL '2' DAY);
+INSERT INTO ATTENDANCE (member_id, checkin_time) VALUES (5, SYSTIMESTAMP - INTERVAL '5' DAY);
+
+COMMIT;
+
+SELECT * FROM MEMBERS;
+SELECT * FROM PLANS;
+SELECT * FROM MEMBERSHIPS;
+SELECT * FROM ATTENDANCE;
