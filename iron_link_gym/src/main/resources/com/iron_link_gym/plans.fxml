@@ -19,7 +19,7 @@
             <TableColumn fx:id="colId"       text="ID"            prefWidth="50"/>
             <TableColumn fx:id="colName"     text="Plan Name"     prefWidth="180"/>
             <TableColumn fx:id="colType"     text="Type"          prefWidth="120"/>
-            <TableColumn fx:id="colDuration" text="Duration(days)"prefWidth="120"/>
+            <TableColumn fx:id="colDuration" text="Duration(days)" prefWidth="120"/>
             <TableColumn fx:id="colPrice"    text="Price (₹)"     prefWidth="100"/>
             <TableColumn fx:id="colActive"   text="Active"        prefWidth="70"/>
         </columns>

@@ -14,10 +14,26 @@
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="👥 Members"      fx:id="membersTab"/>
-                <Tab text="📋 Plans"        fx:id="plansTab"/>
-                <Tab text="🏅 Memberships"  fx:id="membershipsTab"/>
-                <Tab text="📅 Attendance"   fx:id="attendanceTab"/>
+                <Tab text="👥 Members"      fx:id="membersTab">
+                    <content>
+                        <fx:include source="members.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="📋 Plans"        fx:id="plansTab">
+                    <content>
+                        <fx:include source="plans.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="🏅 Memberships"  fx:id="membershipsTab">
+                    <content>
+                        <fx:include source="memberships.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="📅 Attendance"   fx:id="attendanceTab">
+                    <content>
+                        <fx:include source="attendance.fxml"/>
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
     </center>

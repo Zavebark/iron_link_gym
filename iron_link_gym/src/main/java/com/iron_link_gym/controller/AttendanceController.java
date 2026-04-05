@@ -131,7 +131,7 @@ public class AttendanceController {
         // Priority: use selected row, else search field
         Attendance sel = attendanceTable.getSelectionModel().getSelectedItem();
         if (sel != null) {
-            doCheckOut(sel.getMemberId(), sel.getMemberName());
+            doCheckOut(sel.getMemberId(), sel.getFullName());
             return;
         }
         String kw = memberSearchField.getText().trim();

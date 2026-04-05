@@ -34,7 +34,6 @@ public class MemberController {
         colName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colJoined.setCellValueFactory(new PropertyValueFactory<>("dateJoining"));
         colNotes.setCellValueFactory(new PropertyValueFactory<>("medicalNotes"));
         loadAll();
@@ -101,13 +100,11 @@ public class MemberController {
         TextField nameField    = new TextField(ex != null ? ex.getFullName()    : "");
         TextField phoneField   = new TextField(ex != null ? ex.getPhone()       : "");
         TextField emailField   = new TextField(ex != null ? ex.getEmail()       : "");
-        TextField addressField = new TextField(ex != null ? ex.getAddress()     : "");
         TextField notesField   = new TextField(ex != null ? ex.getMedicalNotes(): "");
 
         nameField.setPromptText("Full Name *");
         phoneField.setPromptText("Phone");
         emailField.setPromptText("Email");
-        addressField.setPromptText("Address");
         notesField.setPromptText("Medical Notes (optional)");
 
         GridPane grid = new GridPane();
@@ -116,7 +113,6 @@ public class MemberController {
         grid.addRow(0, new Label("Full Name:"),    nameField);
         grid.addRow(1, new Label("Phone:"),        phoneField);
         grid.addRow(2, new Label("Email:"),        emailField);
-        grid.addRow(3, new Label("Address:"),      addressField);
         grid.addRow(4, new Label("Medical Notes:"),notesField);
 
         dlg.getDialogPane().setContent(grid);
@@ -125,8 +121,7 @@ public class MemberController {
         dlg.setResultConverter(btn -> {
             if (btn == ButtonType.OK) {
                 int id = ex != null ? ex.getMemberId() : 0;
-                return new Member(id, nameField.getText(), phoneField.getText(),
-                    emailField.getText(), addressField.getText(),
+                return new Member(id, nameField.getText(), phoneField.getText(), emailField.getText(),
                     new Date(System.currentTimeMillis()), notesField.getText());
             }
             return null;

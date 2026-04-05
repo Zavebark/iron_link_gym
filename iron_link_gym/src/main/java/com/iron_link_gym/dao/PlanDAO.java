@@ -75,4 +75,12 @@ public class PlanDAO {
         ps.setInt(6, p.getPlanId());
         ps.executeUpdate();
     }
+
+    public void deletePlan(int planId) throws SQLException {
+        String sql = "DELETE FROM PLANS WHERE plan_id=?";
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, planId);
+        ps.executeUpdate();
+    }
 }

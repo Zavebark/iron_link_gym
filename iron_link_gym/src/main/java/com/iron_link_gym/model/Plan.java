@@ -8,7 +8,6 @@ public class Plan {
     private double price;
     private String isActive;
 
-    // Constructor
     public Plan(int planId, String planName, String planType, int durationDays, double price, String isActive) {
         this.planId = planId;
         this.planName = planName;
@@ -18,7 +17,6 @@ public class Plan {
         this.isActive = isActive;
     }
 
-    // Getters and Setters
     public int getPlanId() { return planId; }
     public void setPlanId(int planId) { this.planId = planId; }
 
@@ -39,6 +37,6 @@ public class Plan {
 
     @Override
     public String toString() {
-        return planName + " - ₹" + price + " (" + planType + ")";
+        return planName + " - ₹" + price;
     }
 }

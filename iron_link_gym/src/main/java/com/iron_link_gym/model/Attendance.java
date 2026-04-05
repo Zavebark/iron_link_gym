@@ -1,18 +1,23 @@
 package com.iron_link_gym.model;
 
 import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Attendance {
     private int attendanceId;
     private int memberId;
-    private String memberName;
-    private Timestamp checkinTime;
+    String fullname;
+    private Date date;
+    private Timestamp checkInTime;
+    private Timestamp checkOutTime;
 
-    public Attendance(int attendanceId, int memberId, String memberName, Timestamp checkinTime) {
+    public Attendance(int attendanceId, int memberId, String fullname, Date date, Timestamp checkInTime, Timestamp checkOutTime) {
         this.attendanceId = attendanceId;
         this.memberId = memberId;
-        this.memberName = memberName;
-        this.checkinTime = checkinTime;
+        this.date = date;
+        this.fullname = fullname;
+        this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
     }
 
     public int getAttendanceId() { return attendanceId; }
@@ -21,14 +26,28 @@ public class Attendance {
     public int getMemberId() { return memberId; }
     public void setMemberId(int memberId) { this.memberId = memberId; }
 
-    public String getMemberName() { return memberName; }
-    public void setMemberName(String memberName) { this.memberName = memberName; }
+    public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
 
-    public Timestamp getCheckinTime() { return checkinTime; }
-    public void setCheckinTime(Timestamp checkinTime) { this.checkinTime = checkinTime; }
+    public String getFullName(){ return fullname; }
+    public void setFullName(String fullname) { this.fullname = fullname; }
+
+    public Timestamp getCheckInTime() { return checkInTime; }
+    public void setCheckInTime(Timestamp checkInTime) { this.checkInTime = checkInTime; }
+
+    public Timestamp getCheckOutTime() { return checkOutTime; }
+    public void setCheckOutTime(Timestamp checkOutTime) { this.checkOutTime = checkOutTime; }
+
+    public String getCheckinDisplay(){
+        return "Member ID: "+this.getMemberId() + " - Check In At: "+this.getCheckInTime();
+    }
+
+    public String getCheckoutDisplay(){
+        return "Member ID: "+this.getMemberId() + " - Check Out At: "+this.getCheckOutTime();
+    }
 
     @Override
     public String toString() {
-        return memberName + " - " + checkinTime.toString();
+        return "Member ID: " + memberId + " - " + date;
     }
 }

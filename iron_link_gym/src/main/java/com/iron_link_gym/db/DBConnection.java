@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class DBConnection {
     private static final String URL      = "jdbc:oracle:thin:@localhost:1521:XE";
     private static final String USER     = "system";
-    private static final String PASSWORD = "2006";
+    private static final String PASSWORD = "orca30805";
 
     private static Connection connection = null;
 
@@ -31,7 +31,6 @@ public class DBConnection {
                 "  full_name    VARCHAR2(100) NOT NULL," +
                 "  phone        VARCHAR2(20)," +
                 "  email        VARCHAR2(100)," +
-                "  address      VARCHAR2(255)," +
                 "  date_joining DATE DEFAULT SYSDATE," +
                 "  medical_notes VARCHAR2(500)" +
                 ")");
