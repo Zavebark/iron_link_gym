@@ -6,29 +6,29 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.iron_link_gym.controller.MemberController">
 
-    <!-- Search Bar -->
-    <HBox spacing="10">
-        <TextField fx:id="searchField" promptText="Search by name or phone..." prefWidth="300"/>
-        <Button text="Search" onAction="#handleSearch"/>
-        <Button text="Show All" onAction="#handleShowAll"/>
-        <Button text="Add Member" onAction="#handleAdd"/>
-        <Button text="Edit Member" onAction="#handleEdit"/>
-        <Button text="Delete Member" onAction="#handleDelete"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search by name or phone..." prefWidth="280"/>
+        <Button text="Search"        onAction="#handleSearch"  style="-fx-pref-width:80px;"/>
+        <Button text="Show All"      onAction="#handleShowAll" style="-fx-pref-width:80px;"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="➕ Add"    onAction="#handleAdd"    style="-fx-pref-width:75px;"/>
+        <Button text="✏ Edit"   onAction="#handleEdit"   style="-fx-pref-width:75px;"/>
+        <Button text="🗑 Delete" onAction="#handleDelete" style="-fx-pref-width:90px;"/>
     </HBox>
 
-    <!-- Table -->
     <TableView fx:id="memberTable" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="colId"      text="ID"       prefWidth="50"/>
-            <TableColumn fx:id="colName"    text="Name"     prefWidth="180"/>
-            <TableColumn fx:id="colPhone"   text="Phone"    prefWidth="120"/>
-            <TableColumn fx:id="colEmail"   text="Email"    prefWidth="180"/>
-            <TableColumn fx:id="colJoined"  text="Joined"   prefWidth="100"/>
-            <TableColumn fx:id="colNotes"   text="Medical Notes" prefWidth="200"/>
+            <TableColumn fx:id="colId"      text="ID"            prefWidth="50"/>
+            <TableColumn fx:id="colName"    text="Name"          prefWidth="170"/>
+            <TableColumn fx:id="colPhone"   text="Phone"         prefWidth="115"/>
+            <TableColumn fx:id="colEmail"   text="Email"         prefWidth="170"/>
+            <TableColumn fx:id="colAddress" text="Address"       prefWidth="160"/>
+            <TableColumn fx:id="colJoined"  text="Date Joined"   prefWidth="100"/>
+            <TableColumn fx:id="colNotes"   text="Medical Notes" prefWidth="180"/>
         </columns>
+        <placeholder><Label text="No members found."/></placeholder>
     </TableView>
 
-    <!-- Status Label -->
-    <Label fx:id="statusLabel" text=""/>
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill:#555;"/>
 
 </VBox>

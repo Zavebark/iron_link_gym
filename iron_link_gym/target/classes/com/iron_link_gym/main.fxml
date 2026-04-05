@@ -4,20 +4,20 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.iron_link_gym.controller.MainController"
-            prefWidth="1000" prefHeight="650">
+            prefWidth="1100" prefHeight="700">
 
     <top>
-        <Label text="🏋 Iron-Link Gym Management System"
-               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 15px;"/>
+        <Label text="🏋  Iron-Link Gym Management System"
+               style="-fx-font-size:20px; -fx-font-weight:bold; -fx-padding:12px 18px;"/>
     </top>
 
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Members"     fx:id="membersTab"/>
-                <Tab text="Plans"       fx:id="plansTab"/>
-                <Tab text="Memberships" fx:id="membershipsTab"/>
-                <Tab text="Attendance"  fx:id="attendanceTab"/>
+                <Tab text="👥 Members"      fx:id="membersTab"/>
+                <Tab text="📋 Plans"        fx:id="plansTab"/>
+                <Tab text="🏅 Memberships"  fx:id="membershipsTab"/>
+                <Tab text="📅 Attendance"   fx:id="attendanceTab"/>
             </tabs>
         </TabPane>
     </center>

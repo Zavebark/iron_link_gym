@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-padding: 15px;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iron_link_gym.controller.PlanController">
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="🔄 Refresh"  onAction="#handleShowAll" style="-fx-pref-width:90px;"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="➕ Add Plan"    onAction="#handleAdd"    style="-fx-pref-width:100px;"/>
+        <Button text="✏ Edit Plan"   onAction="#handleEdit"   style="-fx-pref-width:100px;"/>
+        <Button text="🗑 Delete Plan" onAction="#handleDelete" style="-fx-pref-width:110px;"/>
+    </HBox>
+
+    <TableView fx:id="planTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"       text="ID"            prefWidth="50"/>
+            <TableColumn fx:id="colName"     text="Plan Name"     prefWidth="180"/>
+            <TableColumn fx:id="colType"     text="Type"          prefWidth="120"/>
+            <TableColumn fx:id="colDuration" text="Duration(days)"prefWidth="120"/>
+            <TableColumn fx:id="colPrice"    text="Price (₹)"     prefWidth="100"/>
+            <TableColumn fx:id="colActive"   text="Active"        prefWidth="70"/>
+        </columns>
+        <placeholder><Label text="No plans found."/></placeholder>
+    </TableView>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill:#555;"/>
+
+</VBox>

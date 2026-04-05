@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-padding: 15px;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iron_link_gym.controller.MembershipController">
+
+    <!-- Row 1: search + validate -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchMemberField" promptText="Search member by name or phone…" prefWidth="280"/>
+        <Button text="🔍 Search"    onAction="#handleSearchByMember" style="-fx-pref-width:90px;"/>
+        <Button text="✅ Validate"  onAction="#handleValidate"       style="-fx-pref-width:90px;"/>
+        <Button text="Show All"     onAction="#handleShowAll"        style="-fx-pref-width:80px;"/>
+    </HBox>
+
+    <!-- Row 2: filter + CRUD -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Filter:"/>
+        <ComboBox fx:id="filterStatus" onAction="#handleFilter" prefWidth="120"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="➕ Add"      onAction="#handleAdd"     style="-fx-pref-width:80px;"/>
+        <Button text="🔄 Renew"   onAction="#handleRenew"   style="-fx-pref-width:80px;"/>
+        <Button text="⏸ Suspend"  onAction="#handleSuspend" style="-fx-pref-width:90px;"/>
+        <Button text="⏹ Expire"   onAction="#handleExpire"  style="-fx-pref-width:80px;"/>
+        <Button text="🗑 Delete"   onAction="#handleDelete"  style="-fx-pref-width:80px;"/>
+    </HBox>
+
+    <TableView fx:id="membershipTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colSubId"   text="#"          prefWidth="45"/>
+            <TableColumn fx:id="colMember"  text="Member"     prefWidth="160"/>
+            <TableColumn fx:id="colPlan"    text="Plan"       prefWidth="150"/>
+            <TableColumn fx:id="colTrainer" text="Trainer"    prefWidth="130"/>
+            <TableColumn fx:id="colStart"   text="Start"      prefWidth="100"/>
+            <TableColumn fx:id="colEnd"     text="End"        prefWidth="100"/>
+            <TableColumn fx:id="colStatus"  text="Status"     prefWidth="90"/>
+        </columns>
+        <placeholder><Label text="No memberships found."/></placeholder>
+    </TableView>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill:#555;"/>
+
+</VBox>

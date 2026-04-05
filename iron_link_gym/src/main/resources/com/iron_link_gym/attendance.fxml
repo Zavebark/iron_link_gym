@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-padding: 15px;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iron_link_gym.controller.AttendanceController">
+
+    <!-- Row 1: search + check-in / check-out -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="memberSearchField"
+                   promptText="Member name or phone…"
+                   prefWidth="280"/>
+        <Button text="🔍 Search Member"  onAction="#handleSearchByMember" style="-fx-pref-width:130px;"/>
+        <Separator orientation="VERTICAL"/>
+        <Button text="✅ Check In"   onAction="#handleCheckIn"  style="-fx-pref-width:100px;
+                                                                       -fx-background-color:#2e7d32;
+                                                                       -fx-text-fill:white;"/>
+        <Button text="🚪 Check Out"  onAction="#handleCheckOut" style="-fx-pref-width:100px;
+                                                                       -fx-background-color:#c62828;
+                                                                       -fx-text-fill:white;"/>
+    </HBox>
+
+    <!-- Row 2: view filters -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="📅 Today"    onAction="#handleShowToday" style="-fx-pref-width:90px;"/>
+        <Button text="📋 All"      onAction="#handleShowAll"   style="-fx-pref-width:90px;"/>
+    </HBox>
+
+    <TableView fx:id="attendanceTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"       text="ID"          prefWidth="55"/>
+            <TableColumn fx:id="colName"     text="Member"      prefWidth="200"/>
+            <TableColumn fx:id="colDate"     text="Date"        prefWidth="110"/>
+            <TableColumn fx:id="colCheckin"  text="Check-In"    prefWidth="100"/>
+            <TableColumn fx:id="colCheckout" text="Check-Out"   prefWidth="100"/>
+        </columns>
+        <placeholder><Label text="No attendance records."/></placeholder>
+    </TableView>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill:#555;"/>
+
+</VBox>
