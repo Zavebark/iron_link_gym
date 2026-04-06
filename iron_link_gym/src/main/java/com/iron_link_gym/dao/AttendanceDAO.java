@@ -1,7 +1,12 @@
 package com.iron_link_gym.dao;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.iron_link_gym.db.DBConnection;
 import com.iron_link_gym.model.Attendance;
 
@@ -64,29 +69,16 @@ public class AttendanceDAO {
         return list;
     }
 
-    /**
-     * Check in a member.  Prevents duplicate check-in on the same calendar day.
-     * Returns true if check-in was recorded, false if already checked in today.
-     */
     public boolean checkIn(int memberId) throws SQLException {
-        // Guard: already checked in today?
-        String guard =
-            "SELECT COUNT(*) FROM ATTENDANCE " +
-            "WHERE member_id = ? AND TRUNC(checkin_date) = TRUNC(SYSDATE)";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(guard)) {
-            ps.setInt(1, memberId);
-            try (ResultSet rs = ps.executeQuery()) {
-                rs.next();
-                if (rs.getInt(1) > 0) return false;
-            }
+        String sql = "{call check_in_member(?)}";
+
+        try (var conn = DBConnection.getConnection();
+             var cs = conn.prepareCall(sql)) {
+
+            cs.setInt(1, memberId);
+            cs.execute();
+            return true;
         }
-        String sql = "INSERT INTO ATTENDANCE (member_id, checkin_date, checkin_time) " +
-                     "VALUES (?, TRUNC(SYSDATE), SYSTIMESTAMP)";
-        try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
-            ps.setInt(1, memberId);
-            ps.executeUpdate();
-        }
-        return true;
     }
 
     /**

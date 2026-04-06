@@ -1,23 +1,21 @@
 package com.iron_link_gym.dao;
 
-import java.sql.*;
-import java.util.*;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.iron_link_gym.db.DBConnection;
 import com.iron_link_gym.model.Membership;
 
 public class MembershipDAO {
 
     private static final String BASE_QUERY =
-        "SELECT ms.subscription_id, ms.member_id, m.full_name," +
-        "       ms.plan_id, p.plan_name," +
-        "       NVL(ms.trainer_id, 0) AS trainer_id," +
-        "       NVL(t.full_name, 'None') AS trainer_name," +
-        "       ms.start_date, ms.end_date, ms.status " +
-        "FROM MEMBERSHIPS ms " +
-        "JOIN MEMBERS m  ON ms.member_id = m.member_id " +
-        "JOIN PLANS   p  ON ms.plan_id   = p.plan_id " +
-        "LEFT JOIN TRAINERS t ON ms.trainer_id = t.trainer_id ";
+        "SELECT * FROM membership_details ";
 
     private Membership mapRow(ResultSet rs) throws SQLException {
         return new Membership(
@@ -30,29 +28,20 @@ public class MembershipDAO {
         );
     }
 
-    /** Auto-expire any memberships whose end_date has passed. */
-    public void refreshExpired() throws SQLException {
-        String sql = "UPDATE MEMBERSHIPS SET status='Expired' " +
-                     "WHERE status='Active' AND end_date < TRUNC(SYSDATE)";
-        try (Statement st = DBConnection.getConnection().createStatement()) {
-            st.executeUpdate(sql);
-        }
-    }
-
     public List<Membership> getAllMemberships() throws SQLException {
-        refreshExpired();
+
         List<Membership> list = new ArrayList<>();
         try (Statement st = DBConnection.getConnection().createStatement();
-             ResultSet rs = st.executeQuery(BASE_QUERY + "ORDER BY ms.subscription_id DESC")) {
+             ResultSet rs = st.executeQuery(BASE_QUERY + "ORDER BY subscription_id DESC")) {
             while (rs.next()) list.add(mapRow(rs));
         }
         return list;
     }
 
     public List<Membership> getMembershipsByStatus(String status) throws SQLException {
-        refreshExpired();
+
         List<Membership> list = new ArrayList<>();
-        String sql = BASE_QUERY + "WHERE ms.status = ? ORDER BY ms.subscription_id DESC";
+        String sql = BASE_QUERY + "WHERE status = ? ORDER BY subscription_id DESC";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
             ps.setString(1, status);
             try (ResultSet rs = ps.executeQuery()) {
@@ -63,9 +52,9 @@ public class MembershipDAO {
     }
 
     public List<Membership> getMembershipsByMember(int memberId) throws SQLException {
-        refreshExpired();
+
         List<Membership> list = new ArrayList<>();
-        String sql = BASE_QUERY + "WHERE ms.member_id = ? ORDER BY ms.start_date DESC";
+        String sql = BASE_QUERY + "WHERE member_id = ? ORDER BY start_date DESC";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
             ps.setInt(1, memberId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -77,8 +66,8 @@ public class MembershipDAO {
 
     /** Returns the single active membership for a member, or null. */
     public Membership getActiveMembership(int memberId) throws SQLException {
-        refreshExpired();
-        String sql = BASE_QUERY + "WHERE ms.member_id = ? AND ms.status = 'Active'";
+
+        String sql = BASE_QUERY + "WHERE member_id = ? AND status = 'Active'";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {
             ps.setInt(1, memberId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -102,7 +91,7 @@ public class MembershipDAO {
         }
     }
 
-    /** Renew: push end_date forward by plan's duration_days and re-activate. */
+    /** Renew: push end_date forward and re-activate */
     public void renewMembership(int subscriptionId, Date newEndDate) throws SQLException {
         String sql = "UPDATE MEMBERSHIPS SET end_date=?, status='Active' WHERE subscription_id=?";
         try (PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql)) {

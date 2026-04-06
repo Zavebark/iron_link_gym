@@ -3,7 +3,6 @@ com\iron_link_gym\controller\MembershipController.class
 com\iron_link_gym\controller\TrainerController.class
 com\iron_link_gym\dao\PlanDAO.class
 com\iron_link_gym\model\Trainer.class
-com\iron_link_gym\model\Payment.class
 module-info.class
 com\iron_link_gym\model\Attendance.class
 com\iron_link_gym\dao\TrainerDAO.class
