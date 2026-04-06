@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-padding: 15px;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iron_link_gym.controller.TrainerController">
+
+    <HBox spacing="10">
+        <Button text="Show All" onAction="#handleShowAll"/>
+        <Button text="Add Trainer" onAction="#handleAdd"/>
+        <Button text="Edit Trainer" onAction="#handleEdit"/>
+        <Button text="Delete Trainer" onAction="#handleDelete"/>
+    </HBox>
+
+    <TableView fx:id="trainerTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"             text="ID"             prefWidth="50"/>
+            <TableColumn fx:id="colName"           text="Name"           prefWidth="180"/>
+            <TableColumn fx:id="colPhone"          text="Phone"          prefWidth="130"/>
+            <TableColumn fx:id="colSpecialization" text="Specialization" prefWidth="180"/>
+            <TableColumn fx:id="colTimings"        text="Timings"        prefWidth="200"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="statusLabel" text=""/>
+
+</VBox>

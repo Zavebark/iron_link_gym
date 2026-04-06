@@ -12,6 +12,7 @@ public class MainController {
     @FXML private Tab plansTab;
     @FXML private Tab membershipsTab;
     @FXML private Tab attendanceTab;
+    @FXML private Tab trainersTab;
 
     @FXML
     public void initialize() {
@@ -20,6 +21,7 @@ public class MainController {
             plansTab.setContent(FXMLLoader.load(getClass().getResource("/com/iron_link_gym/plans.fxml")));
             membershipsTab.setContent(FXMLLoader.load(getClass().getResource("/com/iron_link_gym/memberships.fxml")));
             attendanceTab.setContent(FXMLLoader.load(getClass().getResource("/com/iron_link_gym/attendance.fxml")));
+            trainersTab.setContent(FXMLLoader.load(getClass().getResource("/com/iron_link_gym/trainers.fxml")));
         } catch (Exception e) {
             e.printStackTrace();
         }

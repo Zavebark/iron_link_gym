@@ -34,6 +34,12 @@
                         <fx:include source="attendance.fxml"/>
                     </content>
                 </Tab>
+
+                <Tab text="Trainers"     fx:id="trainersTab">
+                    <content>
+                        <fx:include source="trainers.fxml"/>
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
     </center>
