@@ -22,7 +22,6 @@
             <TableColumn fx:id="colName"    text="Name"          prefWidth="170"/>
             <TableColumn fx:id="colPhone"   text="Phone"         prefWidth="115"/>
             <TableColumn fx:id="colEmail"   text="Email"         prefWidth="170"/>
-            <TableColumn fx:id="colAddress" text="Address"       prefWidth="160"/>
             <TableColumn fx:id="colJoined"  text="Date Joined"   prefWidth="100"/>
             <TableColumn fx:id="colNotes"   text="Medical Notes" prefWidth="180"/>
         </columns>

@@ -9,7 +9,13 @@ import com.iron_link_gym.model.Member;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
@@ -21,7 +27,6 @@ public class MemberController {
     @FXML private TableColumn<Member, String>  colName;
     @FXML private TableColumn<Member, String>  colPhone;
     @FXML private TableColumn<Member, String>  colEmail;
-    @FXML private TableColumn<Member, String>  colAddress;
     @FXML private TableColumn<Member, Date>    colJoined;
     @FXML private TableColumn<Member, String>  colNotes;
     @FXML private Label statusLabel;
